@@ -368,12 +368,12 @@ JitsiConferenceEventManager.prototype.setupChatRoomListeners = function() {
         XMPPEvents.MESSAGE_RECEIVED,
 
         // eslint-disable-next-line max-params
-        (jid, txt, myJid, ts, nick, isGuest) => {
+        (jid, messageId, txt, myJid, ts, nick, isGuest) => {
             const id = Strophe.getResourceFromJid(jid);
 
             conference.eventEmitter.emit(
                 JitsiConferenceEvents.MESSAGE_RECEIVED,
-                id, txt, ts, nick, isGuest);
+                id, senderMessageId, txt, ts, nick, isGuest);
         });
 
     chatRoom.addListener(
